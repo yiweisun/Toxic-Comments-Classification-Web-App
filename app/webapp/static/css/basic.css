@@ -1,0 +1,61 @@
+/* stylelint-disable selector-list-comma-newline-after */
+/* Background Picture*/
+html,
+body {
+        background-image: url("../images/b3.jpg");
+        background-size: 1500px 1000px;
+    } 
+
+/* Heading Fonts */
+h1 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+h2.first {
+  margin-top: 50px;
+}
+
+h2.second {
+  margin-top: 30px;
+}
+
+.badge {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 30%
+}
+
+p {
+  text-align: center;
+}
+
+/* Display setting for jumbotron */
+@media (min-width: 1500px) {
+  .container {
+    width: 1280px;
+  }
+}
+
+.jumbotron {
+    background-size: cover;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+div.first {
+    padding-bottom: 10%;
+    background: rgba(245, 245, 245, 0.7);
+}
+
+/* Text Setting */
+
+.center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+}
+
+/* Button Setting */
+.btn-space {
+    margin-right: 10px;
+}
