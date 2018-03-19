@@ -40,19 +40,14 @@
 					<ul>
 						 <li>Enter your comment text</li>
 						 <li>If you finish entering, click "Classify"</li>
-   						 <li>If you need to undo your input, click "Undo"</li>
-   						 <li>If you need to redo your input, click "Redo"</li>
 						 <li>If you need to clean the content entered, click "Clear"</li>
 					</ul> 
           <h2 class="first"> Comment Input:</h2>
           <form action = "{{ url_for('result') }}" method = "post">
-      			<textarea class="form-control" rows="5" name="comment" placeholder="Insert your text here"></textarea>
-          
-      		  <button onclick="document.getElementById('comment').value = ''" class="btn btn-primary mt-3 float-right">Clear</button>
-      		  <button onclick= updateButtons() class="btn btn-primary btn-space mt-3 float-right">Redo</button>
-      		  <button onclick= updateButtons() class="btn btn-primary btn-space mt-3 float-right">Undo</button>
+      			<textarea class="form-control" rows="5" name="comment" id="comment" placeholder="Insert your text here"></textarea>
             <button onclick="submit" class="btn btn-primary btn-space mt-3 float-right">Classify</button>
-          </form>
+          </form>          
+      		  <button onclick="document.getElementById('comment').value = ''" class="btn btn-primary mt-3 float-right">Clear</button>
   			</div>
   		</div>
     </div>
