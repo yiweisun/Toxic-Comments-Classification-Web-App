@@ -15,22 +15,13 @@ from scipy.sparse import hstack
 from sklearn.externals import joblib
 
 
-
-def train_reader(): 
+def train_sub_reader(): 
     # Read Train dataset and fill the missing value with single space. 
-    train = pd.read_csv('../data/train.csv').fillna(' ')
+    train = pd.read_csv('../data/train_sub.csv').fillna(' ')
     return(train)
     
-
-def test_reader(): 
-    # Read Test dataset and fill the missing value with single space. 
-    test = pd.read_csv('../data/test.csv').fillna(' ')
-    #test_text = test['comment_text']
-    return(test)
-
-
 def binary_creater():
-    train = train_reader()
+    train = train_sub_reader()
     # Create binary response: toxic or not
     # Create the toxic and not for our prediction response
     train['toxic_count'] = [a + b + c + x + y + z for a ,b ,c, x, y, z in 
@@ -46,7 +37,7 @@ def word_vec():
     #  TF-IDF features. Term frequency–inverse document frequency (TF-IDF), is a 
     # numerical statistic that is intended to reflect how important a word is to 
     # a document in a collection or corpus.
-    all_text = pd.concat([train_reader()['comment_text'], test_reader()['comment_text']]) # Concatenate
+    train_sub_text = train_sub_reader()['comment_text']
     
     word_vectorizer = TfidfVectorizer(
     sublinear_tf=True,  # Sublinear scale as the frequency might not be a good indicator
@@ -56,9 +47,10 @@ def word_vec():
     ngram_range=(1, 1),
     max_features=500
     )
-    word_vectorizer.fit(all_text)
+    word_vectorizer.fit(train_sub_text)
     filename1 = '../data/word_vectorizer.joblib.pkl'
     _ = joblib.dump(word_vectorizer, filename1, compress=9)
+    
     
     char_vectorizer = TfidfVectorizer(
     sublinear_tf=True,
@@ -67,12 +59,12 @@ def word_vec():
     stop_words='english',
     ngram_range=(2, 6),
     max_features=3000)
-    char_vectorizer.fit(all_text)
+    char_vectorizer.fit(train_sub_text)
     filename2 = '../data/char_vectorizer.joblib.pkl'
     _ = joblib.dump(char_vectorizer, filename2, compress=9)
     
-    
-    
+
+
 def model_creater():    
     
     train = binary_creater()
@@ -92,5 +84,4 @@ def model_creater():
     filename = '../data/digits_classifier.joblib.pkl'
     _ = joblib.dump(Model, filename, compress=9)
 
-model_creater()
 
