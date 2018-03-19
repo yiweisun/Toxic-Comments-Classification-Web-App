@@ -38,6 +38,6 @@ def result():
 	return render_template('result.html', comment=comment, result=classification)
 
 if __name__ == "__main__":  # Script executed directly?
-    application.run(debug=True) # Launch built-in web server and run this Flask webapp
+    application.run(host = "0.0.0.0:80",debug=True) # Launch built-in web server and run this Flask webapp
 
-application.run(host = "0.0.0.0", debug=True)
+# application.run(host = "0.0.0.0", debug=True)
