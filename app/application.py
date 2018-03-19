@@ -32,7 +32,7 @@ def result():
 	if result == 0:
 		classification = "Not Toxic"
 	else:
-		classficiation = "Toxic"
+		classification = "Toxic"
 
 		#return render_template('result.html', comment = comment)
 	return render_template('result.html', comment=comment, result=classification)
