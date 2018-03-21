@@ -59,11 +59,13 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
     `wget https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh bash Anaconda3-5.1.0-Linux-x86_64.sh`
 
 
-3. Clone this GitHub repository to local. 
+3. Clone this GitHub repository to local
+ 
     `git clone https://github.com/yiweisun/msia423_project`
 
 
 4. Create a virtual environment
+
     `conda create -n msiapp python=3`
 
     `source activate msiapp`
@@ -72,6 +74,7 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 
 
 5. Install packages
+
     `conda install flask`
 
     `conda install flask-sqlalchemy`
@@ -90,5 +93,6 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
    
 
 6. Run the application
+
     `python application.py`
 
