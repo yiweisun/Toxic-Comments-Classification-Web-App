@@ -9,10 +9,14 @@ Author: Yiwei Sun
 
 from models import model_predictor
 from flask import Flask, render_template, request, session, g, redirect, url_for, abort, \
-    render_template, flash
+render_template, flash
 import os
 from sklearn.externals import joblib
 import logging
+
+
+application = Flask(__name__)
+application.config.from_object(__name__) # Load config
 
 
 # Load pickle file for word and character vectorizer    
@@ -49,7 +53,7 @@ def main():
 @application.route('/result', methods=['POST'])
 
 def result():
-	"""Result page of webapp
+    """Result page of webapp
 
     Args:
 
@@ -61,21 +65,22 @@ def result():
 
     """
 
-	if request.method == 'POST':
-		comment = request.form['comment']
-		result = model_predictor(comment,word_vectorizer,char_vectorizer,Model) # matrix needed
-        logger.info('Classification has been completed.')
-        if result == 0:
-		classification = "Not Toxic"
-	else:
-		classification = "Toxic"
+    if request.method == 'POST':
+         comment = request.form['comment']
+         result = model_predictor(comment,word_vectorizer,char_vectorizer,Model) # matrix needed
+         logger.info("Classification has been completed.")
+      
+    if result == 0:
+         classification = "Not Toxic"
+    else:
+         classification = "Toxic"
 
-	return render_template('result.html', comment=comment, result=classification)
+    return render_template('result.html', comment=comment, result=classification)
 
 if __name__ == "__main__":  
      # logger initialization
     logging.basicConfig(filename='application.log', level=logging.DEBUG)
     logger = logging.getLogger(__name__) 
-	# Launch built-in web server and run this Flask webapp
+     # Launch built-in web server and run this Flask webapp
     application.run(host = "0.0.0.0",debug=True) 
 
