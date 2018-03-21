@@ -35,13 +35,9 @@ def main():
     """Home page of the webapp
 
     Args:
-
         Null
 
-
-
     Returns:
-
         flask-obj: rendered html page
 
     """
@@ -56,11 +52,9 @@ def result():
     """Result page of webapp
 
     Args:
-
         Null
 
     Returns:
-
         flask-obj: rendered html page
 
     """

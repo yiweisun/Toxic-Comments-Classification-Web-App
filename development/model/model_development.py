@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
 """
-Created on Wed Mar 14 15:10:25 2018
 
-@author: yiwei
+This is the model development file for the toxic comment webapp.
+
+Author: Yiwei Sun
+
 """
 
 import numpy as np
@@ -16,11 +17,31 @@ from sklearn.externals import joblib
 
 
 def train_sub_reader(): 
+    """Read train set data 
+
+        Args:
+            Null
+
+        Returns:
+            df: the readed train set data in panda dataframe
+
+    """
+
     # Read Train dataset and fill the missing value with single space. 
     train = pd.read_csv('../data/train_sub.csv').fillna(' ')
     return(train)
     
 def binary_creater():
+    """Create response variable for logistic regression 
+
+        Args:
+            Null
+
+        Returns:
+            df: the train set data with binary indicator added
+
+    """
+
     train = train_sub_reader()
     # Create binary response: toxic or not
     # Create the toxic and not for our prediction response
@@ -33,12 +54,15 @@ def binary_creater():
 
 
 def word_vec():
+    """Train word and characters vectorizer from the train set text and save in pickle files"""
+
     # Use TfidfVectorizer to convert a collection of raw documents to a matrix of
     #  TF-IDF features. Term frequency–inverse document frequency (TF-IDF), is a 
     # numerical statistic that is intended to reflect how important a word is to 
     # a document in a collection or corpus.
     train_sub_text = train_sub_reader()['comment_text']
     
+    # Train word vectorizer
     word_vectorizer = TfidfVectorizer(
     sublinear_tf=True,  # Sublinear scale as the frequency might not be a good indicator
     strip_accents='unicode', # Accents removed
@@ -52,6 +76,7 @@ def word_vec():
     _ = joblib.dump(word_vectorizer, filename1, compress=9)
     
     
+    # Train character vectorizer
     char_vectorizer = TfidfVectorizer(
     sublinear_tf=True,
     strip_accents='unicode',
@@ -66,7 +91,8 @@ def word_vec():
 
 
 def model_creater():    
-    
+    """Fit the logistic regression based on word and character features through vectorization"""
+
     train = binary_creater()
     train_text = train['comment_text']
     filename1 = '../data/word_vectorizer.joblib.pkl'
@@ -74,13 +100,17 @@ def model_creater():
     word_vectorizer = joblib.load(filename1)
     char_vectorizer = joblib.load(filename2)
 
+    # Get features of word and characters in the train set
     train_word_features = word_vectorizer.transform(train_text)
     train_char_features = char_vectorizer.transform(train_text)
     train_features = hstack([train_char_features, train_word_features])
-    
     train_target = train['is_toxic'].astype('int')
+
+    # Generate the logistic regression by fitting word and characters features
     Model = LogisticRegression(solver='sag')
     Model.fit(train_features, train_target)
+
+    # Save the logistic regression in the pickle file
     filename = '../data/digits_classifier.joblib.pkl'
     _ = joblib.dump(Model, filename, compress=9)
 
