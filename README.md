@@ -44,7 +44,7 @@ Things you need to get it started:
 
 Suggested Steps to set up the app in a AWS EC2 or Linux.
 
-1. Set up EC2 instance and connect:
+1. Set up EC2 instance and connect
 * Open an SSH client. 
 * Locate your private key file 
 * Connect to your instance using its Public DNS
@@ -64,7 +64,7 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
     `git clone https://github.com/yiweisun/msia423_project`
 
 
-4. Create a virtual environment
+4. Create a virtual environment named "msiapp", you can change the name to the one you want
 
     `conda create -n msiapp python=3`
 
@@ -73,7 +73,7 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
     `conda config --add channels conda-forge`
 
 
-5. Install packages
+5. Install packages 
 
     `conda install flask`
 
@@ -96,3 +96,4 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 
     `python application.py`
 
+   Then, go to your `EC2 public DNS` + `:5000/` url to use the web app.  
