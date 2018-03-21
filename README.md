@@ -81,8 +81,6 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 
     `conda install psycopg2`
 
-    `conda install numpy`
-
     `conda install pandas`
 
     `conda install matplotlib`

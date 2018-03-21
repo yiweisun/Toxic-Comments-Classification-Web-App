@@ -6,14 +6,11 @@ Author: Yiwei Sun
 
 """
 
-import numpy as np
 import pandas as pd
 from sklearn.externals import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import cross_val_score
 from scipy.sparse import hstack
-from sklearn.externals import joblib
 
 
 def train_sub_reader(): 
@@ -115,3 +112,42 @@ def model_creater():
     _ = joblib.dump(Model, filename, compress=9)
 
 
+def cv_tester():
+    """Use Cross Validation test the performance of our logistic regression"""
+    train = binary_creater()
+    train_text = train['comment_text']
+    filename = '../data/digits_classifier.joblib.pkl'
+    filename1 = '../data/word_vectorizer.joblib.pkl'
+    filename2 = '../data/char_vectorizer.joblib.pkl'
+    word_vectorizer = joblib.load(filename1)
+    char_vectorizer = joblib.load(filename2)
+
+    train_word_features = word_vectorizer.transform(train_text)
+    train_char_features = char_vectorizer.transform(train_text)
+    train_features = hstack([train_char_features, train_word_features])
+    train_target = train['is_toxic'].astype('int')
+    
+    Model = joblib.load(filename)
+    cv_score = np.mean(cross_val_score(Model, train_features, 
+                                       train_target, cv=5, scoring='accuracy'))
+    print(cv_score)
+    
+def tester():
+     """Use test set data test the performance of our logistic regression"""
+    test = test_sub_reader()
+    test_text = test['comment_text']
+    filename = '../data/digits_classifier.joblib.pkl'
+    filename1 = '../data/word_vectorizer.joblib.pkl'
+    filename2 = '../data/char_vectorizer.joblib.pkl'
+    word_vectorizer = joblib.load(filename1)
+    char_vectorizer = joblib.load(filename2)
+
+    test_word_features = word_vectorizer.transform(test_text)
+    test_char_features = char_vectorizer.transform(test_text)
+    test_features = hstack([test_char_features, test_word_features])
+    test_target = test['binary'].astype('int')
+    
+    Model = joblib.load(filename)
+    accuracy = Model.score(test_features, test_target)
+    print(accuracy)
+    

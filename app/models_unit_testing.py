@@ -9,21 +9,21 @@ Author: Yiwei Sun
 from sklearn.externals import joblib
 
 def test_model_predictor():
-    """Test model predictorfunction."""
+    """Test model_predictor function."""
     
-    #str inputs    
+    # str input
     test = 'Atheism is full of bias shit'
-    
-    # Expected output
-    expected_int = 1
-    
-    # Read word and character vectorizer and the logistic model
+
+    # Word and character vectorizer and the logistic model inputs
     filename1 = '../development/data/word_vectorizer.joblib.pkl'
     filename2 = '../development/data/char_vectorizer.joblib.pkl'
     word_vectorizer = joblib.load(filename1)
     char_vectorizer = joblib.load(filename2)
     filename = '../development/data/digits_classifier.joblib.pkl'
     Model = joblib.load(open(filename, 'rb'))
+    
+    # Expected output
+    expected_int = 1
     
     try:
         # Check type
