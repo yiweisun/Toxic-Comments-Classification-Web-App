@@ -2,7 +2,9 @@
 
 ## Team
 Developer: Yiwei(Phyllis) Sun
+
 Project Owner: Anisha Dubhashi
+
 QA: Jerry Chen
 
 ## Project Objective 
