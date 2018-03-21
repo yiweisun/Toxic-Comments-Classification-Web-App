@@ -41,9 +41,12 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 * Locate your private key file 
 * Connect to your instance using its Public DNS
 
-2. Update and install git and conda:
+2. Update and install git and conda
+
     `sudo yum update`
+
     `sudo yum install git` 
+
     `wget https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh bash Anaconda3-5.1.0-Linux-x86_64.sh`
 
 3. Clone this GitHub repository to local. 
@@ -56,12 +59,19 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 
 5. Install packages
     `conda install flask`
+
     `conda install flask-sqlalchemy`
+
     `conda install psycopg2`
+
     `conda install numpy`
+
     `conda install pandas`
+
     `conda install matplotlib`
+
     `conda install scikit-learn`
+
     `python pip install -r requirements.txt`
    
 6. Run the application
