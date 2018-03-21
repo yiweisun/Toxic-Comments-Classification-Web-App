@@ -14,7 +14,7 @@ from scipy.sparse import hstack
 
 
 def model_predictor(new,word_vectorizer,char_vectorizer,Model):
-    """Predict the class for the input by customer
+    """Predict the class for the input by customer.
 
     Args:
         new(str): A String of customer input. 
@@ -23,7 +23,7 @@ def model_predictor(new,word_vectorizer,char_vectorizer,Model):
         Model(pkl): A pickle file saving the logistic model used to classify
 
     Returns:
-        str: the predicted class for the imput string
+        int: the predicted class 0 or 1 for the imput string
 
     """
 
