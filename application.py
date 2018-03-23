@@ -8,15 +8,12 @@ Author: Yiwei Sun
 """
 
 from app.models import model_predictor
+from app import application
 from flask import Flask, render_template, request, session, g, redirect, url_for, abort, \
 render_template, flash
 import os
 from sklearn.externals import joblib
 import logging
-
-
-application = Flask(__name__)
-application.config.from_object(__name__) # Load config
 
 
 # Load pickle file for word and character vectorizer    
