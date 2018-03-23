@@ -29,6 +29,14 @@ Wikipedia comments that have been labeled by human raters for toxic behavior fro
 * I used `R` to clean and chunk the raw data (code in `development/model/data_split.R`) 
 * I used `Python 3` to do some EDA (code in `development/eda/Project_EDA.ipynb`) and model development (code in `development/model/model_development.py`).
 
+Suggested Steps to prepare dataset.
+
+1. Download train set from [Kaggle](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge)
+
+2. Chunk the data by `development/model/data_split.R` 
+
+3. Save the chunked data under folder `development/data`
+
 
 ## Pivotal Tracker
 [Link to Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2142803)
