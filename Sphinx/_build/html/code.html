@@ -1,0 +1,170 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Model Development &#8212; Toxic Comments Classification Web App 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Web App Deployment" href="flask.html" />
+    <link rel="prev" title="Welcome to Toxic Comments Classification Web App’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-model_development">
+<span id="model-development"></span><h1>Model Development<a class="headerlink" href="#module-model_development" title="Permalink to this headline">¶</a></h1>
+<p>This is the model development file for the toxic comment webapp.</p>
+<p>Author: Yiwei Sun</p>
+<dl class="function">
+<dt id="model_development.binary_creater">
+<code class="descclassname">model_development.</code><code class="descname">binary_creater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.binary_creater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create response variable for logistic regression</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Null</dd>
+<dt>Returns:</dt>
+<dd>df: the train set data with binary indicator added</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.cv_tester">
+<code class="descclassname">model_development.</code><code class="descname">cv_tester</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.cv_tester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use Cross Validation test the performance of our logistic regression</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.model_creater">
+<code class="descclassname">model_development.</code><code class="descname">model_creater</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.model_creater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the logistic regression based on word and character features through vectorization</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.test_sub_reader">
+<code class="descclassname">model_development.</code><code class="descname">test_sub_reader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.test_sub_reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read test set data</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Null</dd>
+<dt>Returns:</dt>
+<dd>df: the readed test set data in panda dataframe</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.tester">
+<code class="descclassname">model_development.</code><code class="descname">tester</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.tester" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use test set data test the performance of our logistic regression</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.train_sub_reader">
+<code class="descclassname">model_development.</code><code class="descname">train_sub_reader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.train_sub_reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read train set data</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>Null</dd>
+<dt>Returns:</dt>
+<dd>df: the readed train set data in panda dataframe</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="model_development.word_vec">
+<code class="descclassname">model_development.</code><code class="descname">word_vec</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#model_development.word_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train word and characters vectorizer from the train set text and save in pickle files</p>
+</dd></dl>
+
+<span class="target" id="module-models"></span><p>This is the classification file for the toxic comment webapp</p>
+<p>Author: Yiwei Sun</p>
+<dl class="function">
+<dt id="models.model_predictor">
+<code class="descclassname">models.</code><code class="descname">model_predictor</code><span class="sig-paren">(</span><em>new</em>, <em>word_vectorizer</em>, <em>char_vectorizer</em>, <em>Model</em><span class="sig-paren">)</span><a class="headerlink" href="#models.model_predictor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict the class for the input by customer.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>new(str): A String of customer input. 
+word_vectorizer(pkl): A pickle file saving word vectorizer from TfidfVectorizer()
+char_vectorizer(pkl): A pickle file saving character vectorizer from TfidfVectorizer()
+Model(pkl): A pickle file saving the logistic model used to classify</dd>
+<dt>Returns:</dt>
+<dd>int: the predicted class 0 or 1 for the imput string</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Toxic Comments Classification Web App’s documentation!</a></li>
+      <li>Next: <a href="flask.html" title="next chapter">Web App Deployment</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Yiwei Sun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
