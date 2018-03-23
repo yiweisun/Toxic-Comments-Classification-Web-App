@@ -20,12 +20,12 @@ application.config.from_object(__name__) # Load config
 
 
 # Load pickle file for word and character vectorizer    
-filename1 = '../development/data/word_vectorizer.joblib.pkl'
-filename2 = '../development/data/char_vectorizer.joblib.pkl'
+filename1 = './development/data/word_vectorizer.joblib.pkl'
+filename2 = './development/data/char_vectorizer.joblib.pkl'
 word_vectorizer = joblib.load(filename1)
 char_vectorizer = joblib.load(filename2)
 # Load pickle file for logistic regression 
-filename = '../development/data/digits_classifier.joblib.pkl'
+filename = './development/data/digits_classifier.joblib.pkl'
 Model = joblib.load(open(filename, 'rb'))
 
 
