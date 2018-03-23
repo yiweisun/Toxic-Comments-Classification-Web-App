@@ -83,18 +83,6 @@ Suggested Steps to set up the app in a AWS EC2 or Linux.
 
 5. Install packages 
 
-    `conda install flask`
-
-    `conda install flask-sqlalchemy`
-
-    `conda install psycopg2`
-
-    `conda install pandas`
-
-    `conda install matplotlib`
-
-    `conda install scikit-learn`
-
     `python pip install -r requirements.txt`
    
 
